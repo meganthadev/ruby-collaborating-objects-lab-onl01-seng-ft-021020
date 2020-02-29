@@ -28,18 +28,26 @@ class Artist
   end
 
   def add_song(song)
-    @songs << song
+    song.artist = self 
+  end
+  
+  def add_song_by_name(song_name)
+    artist = Song.new(song_name)
+    add_song(artist)
   end
 
   def print_songs
-    songs.each { |song| puts song.name }
-  end
-
-  def save
-    @@all << self
+    @songs
   end
 
   def songs
-    @songs
+     Song.all.select do |song|
+       song.artist == self
+     end 
   end
+  
+  def self.song_count
+    Song.all
+  end  
+  
 end 
