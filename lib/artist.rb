@@ -6,30 +6,26 @@ class Artist
   def initialize(name)
     @name = name
     @songs = []
-    save
   end
 
-  def self.all
-    @@all
+  def add_song(song)
+    @songs << song 
   end
-
-  def self.create(name)
-    artist = self.new(name)
-    artist.name = name
-    artist
+  
+  def self.find_or_create_by_name(name)
+    @@all.find do |artist|
+      if artist.name == name
+        artist 
+      else
+       new_artist = self.new(name) 
+      end
+    end
   end
-
+  
   def self.find(name)
     self.all.detect { |artist| artist.name == name }
   end
 
-  def self.find_or_create_by_name(name)
-    self.find(name) || self.create(name)
-  end
-
-  def add_song(song)
-    song.artist = self 
-  end
   
   def add_song_by_name(song_name)
     artist = Song.new(song_name)
@@ -37,8 +33,10 @@ class Artist
   end
 
   def print_songs
-    @songs
-  end
+    @songs.each do |song|
+      puts song.name
+   end
+ end
 
   def songs
      @songs 
@@ -47,5 +45,10 @@ class Artist
   def self.song_count
     Song.all
   end  
+  
+  def self.all
+    @@all
+  end
+  
   
 end 
