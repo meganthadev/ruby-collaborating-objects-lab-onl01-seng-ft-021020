@@ -48,6 +48,5 @@ class Artist
     Song.all
   end  
   
-  
-  
+
 end 
