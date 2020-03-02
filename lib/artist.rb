@@ -22,9 +22,9 @@ class Artist
   end
 
   
-  def add_song_by_name(song_name)
-    artist = Song.new(song_name)
-    add_song(artist)
+  def self.add_song_by_name(song_name)
+    artist_name = Artist.new(name)
+    artist_name
   end
 
   def print_songs
@@ -32,6 +32,10 @@ class Artist
       puts song.name
    end
  end
+ 
+ def self.all
+    @@all
+  end
 
   def songs
      @songs 
@@ -41,9 +45,6 @@ class Artist
     Song.all
   end  
   
-  def self.all
-    @@all
-  end
   
   
 end 
