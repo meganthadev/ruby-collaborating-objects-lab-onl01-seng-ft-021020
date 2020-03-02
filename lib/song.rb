@@ -18,10 +18,10 @@ class Song
     song
   end
 
-  def artist_name=(name)
-    artist = Artist.find_or_create_by_name(name)
+    def artist_name=(artist)
+    #puts artist
+    artist = Artist.find_or_create_by_name(artist)
     artist.add_song(self)
-    @artist = artist
   end
 
   def Song.all
